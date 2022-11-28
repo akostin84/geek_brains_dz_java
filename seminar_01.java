@@ -8,6 +8,7 @@ public class seminar_01{
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
         task01(reader);
+        task02();
         reader.close();
 
     }
@@ -20,6 +21,15 @@ public class seminar_01{
         int n1 = readIntFromTerminal("Please enter integer number N: ", reader);
         System.out.println(getFactorial(n1));
 
+    }
+
+    public static void task02() {
+        System.out.println("Task 2: Print prime numbers less than 1000");
+        for(int i = 1; i <= 1000; i++){
+            if(isPrime(i)){
+                System.out.println(i);
+            }
+        }
     }
 
     static int readIntFromTerminal(String message, Scanner reader) {
@@ -44,4 +54,15 @@ public class seminar_01{
             return n * getFactorial(n - 1);
         }
       }
+
+    static boolean isPrime(int n){
+        if(n <= 1){
+            return false;
+        }
+        for(int i = 2; i <= n/2; i++){
+            if(n % i == 0)
+                return false;
+        }
+        return true;
+    }
  }
