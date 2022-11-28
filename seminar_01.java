@@ -9,6 +9,7 @@ public class seminar_01{
         Scanner reader = new Scanner(System.in);
         task01(reader);
         task02();
+        task03(reader);
         reader.close();
 
     }
@@ -32,12 +33,39 @@ public class seminar_01{
         }
     }
 
+    public static void task03(Scanner reader) {
+        System.out.println("Task 3: Console calculator");
+        int n1 = readIntFromTerminal("Please enter integer number N: ", reader);
+        String operation = getOperation("Please enter operation: ", reader);
+        int n2 = readIntFromTerminal("Please enter integer number N: ", reader);
+        int result = 0;
+        switch(operation){
+            case "+":
+                result = n1 + n2;
+                break;
+            case "-":
+                result = n1 - n2;
+                break;
+            case "*":
+                result = n1 * n2;
+                break;
+            case "/":
+                result = n1 / n2;
+                break;
+            default:
+                System.out.println("Unrecognizable operation");
+                break;
+        }
+        System.out.println(operation);
+        System.out.println(result);
+        }
+
     static int readIntFromTerminal(String message, Scanner reader) {
         System.out.println(message);
         String strNumber = reader.nextLine(); 
         int Number = Integer.parseInt(strNumber);
         return Number;
-      }
+        }
 
     static int getTriangleNumber(int n){
         if(n == 1){
@@ -65,4 +93,10 @@ public class seminar_01{
         }
         return true;
     }
- }
+
+    static String getOperation(String message, Scanner reader){
+        System.out.println(message);
+        String operation = reader.nextLine();
+        return operation;
+    }
+}
