@@ -58,14 +58,14 @@ public class seminar_01{
         }
         System.out.println(operation);
         System.out.println(result);
-        }
+    }
 
     static int readIntFromTerminal(String message, Scanner reader) {
         System.out.println(message);
         String strNumber = reader.nextLine(); 
         int Number = Integer.parseInt(strNumber);
         return Number;
-        }
+    }
 
     static int getTriangleNumber(int n){
         if(n == 1){
@@ -73,7 +73,7 @@ public class seminar_01{
         } else {
             return getTriangleNumber(n - 1) + n;
         }
-      }
+    }
 
     static int getFactorial(int n){
         if(n == 0 || n == 1){
@@ -81,7 +81,7 @@ public class seminar_01{
         } else {
             return n * getFactorial(n - 1);
         }
-      }
+    }
 
     static boolean isPrime(int n){
         if(n <= 1){
