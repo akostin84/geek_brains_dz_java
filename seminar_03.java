@@ -17,7 +17,7 @@ public class seminar_03 {
     public static void main(String[] args){
         task01();
         task02();
-       // task03();
+        task03();
     }
 
     public static void task01() {
@@ -36,6 +36,33 @@ public class seminar_03 {
         System.out.println(Arrays.toString(a));
         System.out.println("Filtered array:");
         System.out.println(Arrays.toString(removeEven(a)));
+    }
+
+    public static void task03() {
+        System.out.println("Task 3: Min Max Mean in Array ");
+        int[] a = new int[] {1, 2, 68, 5, 10, 1, 3, 8, 4, 0, 3, 8, 17};
+        int n = a.length;
+        int min = 0;
+        int max = 0;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (a[i] < min){
+                min = a[i];
+            }
+
+            if (a[i] > max){
+                max = a[i];
+            }
+
+            sum += a[i];
+        }
+        double mean = sum/n;
+        System.out.println("Original array:");
+        System.out.println(Arrays.toString(a));
+        System.out.printf("Min: %d\n", min);
+        System.out.printf("Max: %d\n", max);
+        System.out.printf("Mean: %f\n", mean);
+        
     }
 
     static int[] mergeSortedArrays(int[] a, int[] b) {
