@@ -10,6 +10,7 @@
 // Отфильтровать ноутбуки их первоначального множества и вывести проходящие по условиям.
 
 public class Notebook {
+    private String Model;
     private int Memory;
     private int HardDrive;
     private String OperatingSystem;
@@ -17,12 +18,17 @@ public class Notebook {
 
     public Notebook(){};
 
-    public Notebook(int m, int hd, String os, String c){
+    public Notebook(String name, int m, int hd, String os, String c){
+        this.setModel(name);
         this.setMemory(m);
         this.setHardrive(hd);
         this.setOperatingSystem(os);
         this.setColor(c);
     };
+
+    public String getModel(){
+        return this.Model;
+    }
 
     public int getMemory(){
         return this.Memory;
@@ -40,6 +46,10 @@ public class Notebook {
         return this.Color;
     }
 
+    public void setModel(String n){
+        this.Model = n;
+    }
+    
     public void setMemory(int m){
         this.Memory = m;
     }
