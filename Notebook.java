@@ -49,7 +49,7 @@ public class Notebook {
     public void setModel(String n){
         this.Model = n;
     }
-    
+
     public void setMemory(int m){
         this.Memory = m;
     }
@@ -64,6 +64,11 @@ public class Notebook {
 
     public void setColor(String c){
         this.Color = c;
+    }
+
+    public String showInfo(){
+        return String.format("%s %s with %d Gb memory, %d Gb disk,", 
+        this.Color, this.Model, this.Memory, this.HardDrive); 
     }
     
 }
