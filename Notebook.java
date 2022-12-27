@@ -27,48 +27,49 @@ public class Notebook {
     };
 
     public String getModel(){
-        return this.Model;
+        return Model;
     }
 
     public int getMemory(){
-        return this.Memory;
+        return Memory;
     }
 
     public int getHardDrive(){
-        return this.HardDrive;
+        return HardDrive;
     }
 
     public String getOperatingSystem(){
-        return this.OperatingSystem;
+        return OperatingSystem;
     }
 
     public String getColor(){
-        return this.Color;
+        return Color;
     }
 
     public void setModel(String n){
-        this.Model = n;
+        Model = n;
     }
 
     public void setMemory(int m){
-        this.Memory = m;
+        Memory = m;
     }
 
     public void setHardrive(int hd){
-        this.HardDrive = hd;
+        HardDrive = hd;
     }
 
     public void setOperatingSystem(String os){
-        this.OperatingSystem = os;
+        OperatingSystem = os;
     }
 
     public void setColor(String c){
-        this.Color = c;
+        Color = c;
     }
 
-    public String showInfo(){
+    @Override
+    public String toString(){
         return String.format("%s %s with %d Gb memory, %d Gb disk,", 
-        this.Color, this.Model, this.Memory, this.HardDrive); 
+        Color, Model, Memory, HardDrive); 
     }
     
 }
