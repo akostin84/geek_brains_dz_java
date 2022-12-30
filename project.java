@@ -1,3 +1,5 @@
+// Описание класса Notebook https://github.com/akostin84/geek_brains_dz_java/blob/main/Notebook.java
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
