@@ -14,6 +14,8 @@ public class oop_project {
         Event a = new Event("01-01-2022", "12:23:10");
         a.setName("Surgery");
         System.out.println(a);
+        System.out.println(a.getName());
+        System.out.println(a.getTime());
         a.save();
     } 
 }
@@ -26,9 +28,19 @@ interface Loadable {
     void load();
 }
 
+class Calendar{
+    private List<Event> events;
+
+    public Calendar(String path){
+        
+    };
+
+}
+
 class Event implements Saveable{
     private Date EventTime;
     private String Name;
+    private static final String PATH = "calendar.txt";
     
     public Event(String day, String time){
         SimpleDateFormat sf = new SimpleDateFormat("dd-MM-yyyy; HH:mm:ss");
@@ -52,7 +64,13 @@ class Event implements Saveable{
         this.Name = n;
     }
 
-    private static final String PATH = "calendar.txt";
+    public Date getTime(){
+        return this.EventTime;
+    }
+
+    public String getName(){
+        return this.Name;
+    }
 
     public void save(){
         try (FileWriter writer = new FileWriter(PATH, true)) {
