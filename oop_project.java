@@ -22,6 +22,10 @@ interface Saveable {
     void save();
 }
 
+interface Loadable {
+    void load();
+}
+
 class Event implements Saveable{
     private Date EventTime;
     private String Name;
@@ -57,7 +61,6 @@ class Event implements Saveable{
             writer.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }  
-
+        }
     }
 }
