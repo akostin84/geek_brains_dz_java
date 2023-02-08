@@ -10,9 +10,10 @@ import java.io.*;
 public class oop_project {
     public static void main(String[] args) {
         String initialMsg = String.format("%s\n%s\n%s\n%s\n%s", "Final project: CALENDAR",
-        "Select mode:", "1 - Load the whole calendar", "2 - Load the selected day", "3 - Create new calendar"); 
+        "Select mode:", "1 - Load the whole calendar", "2 - Load the selected day", 
+        "3 - Add new note"); 
         System.out.println(initialMsg);
-        int mode = readIntFromTerminal("You select:");
+        int userMode = readIntFromTerminal("You select:");
         Calendar c = new Calendar("calendar.txt");
         System.out.println(c);  
     }
