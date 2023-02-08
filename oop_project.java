@@ -5,6 +5,8 @@
 
 import java.util.*;
 import java.text.*;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.*;
 
 public class oop_project {
@@ -12,10 +14,15 @@ public class oop_project {
         Event a = new Event("01-01-2022", "12:23:10");
         a.setName("Surgery");
         System.out.println(a);
+        a.save();
     } 
 }
 
-class Event{
+interface Saveable {
+    void save();
+}
+
+class Event implements Saveable{
     private Date EventTime;
     private String Name;
     
@@ -39,5 +46,18 @@ class Event{
 
     public void setName(String n){
         this.Name = n;
+    }
+
+    private static final String PATH = "calendar.txt";
+
+    public void save(){
+        try (FileWriter writer = new FileWriter(PATH, true)) {
+            writer.append(String.format("%s\n", this.toString()));
+            writer.flush();
+            writer.close();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }  
+
     }
 }
