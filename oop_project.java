@@ -5,19 +5,26 @@
 
 import java.util.*;
 import java.text.*;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.*;
+import java.io.*;
 
 public class oop_project {
     public static void main(String[] args) {
-        Event a = new Event("01-01-2022", "12:23:10");
-        a.setName("Surgery");
-        System.out.println(a);
-        System.out.println(a.getName());
-        System.out.println(a.getTime());
-        a.save();
-    } 
+        String initialMsg = String.format("%s\n%s\n%s\n%s\n%s", "Final project: CALENDAR",
+        "Select mode:", "1 - Load the whole calendar", "2 - Load the selected day", "3 - Create new calendar"); 
+        System.out.println(initialMsg);
+        int mode = readIntFromTerminal("You select:");
+        Calendar c = new Calendar("calendar.txt");
+        System.out.println(c);  
+    }
+
+    static int readIntFromTerminal(String message) {
+        Scanner reader = new Scanner(System.in);
+        System.out.print(message);
+        String strNumber = reader.nextLine(); 
+        int Number = Integer.parseInt(strNumber);
+        reader.close();
+        return Number;
+    }
 }
 
 interface Saveable {
@@ -29,11 +36,50 @@ interface Loadable {
 }
 
 class Calendar{
-    private List<Event> events;
+    public ArrayList<Event> events = new ArrayList<Event>();
 
     public Calendar(String path){
-        
+        ArrayList<String> eventsStr = readContent(path);
+        for (int i = 0; i < eventsStr.size(); i++){
+            String[] splittedStr = eventsStr.get(i).split("/");
+            String date_part = splittedStr[0];
+            String time_part = splittedStr[1];
+            String name_part = splittedStr[2];
+            Event e = new Event(date_part, time_part);
+            e.setName(name_part);
+            this.events.add(e);
+        }  
     };
+
+    @Override
+    public String toString(){
+        String output = "";
+        for (int i = 0; i < this.events.size(); i++){
+            output += this.events.get(i) + "\n";
+        }
+        return output;            
+    }
+
+    private ArrayList<String> readContent(String path){
+        ArrayList<String> words = new ArrayList<String>();
+        BufferedReader reader = null;
+        try{
+            reader = new BufferedReader(new FileReader(path));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                words.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+                try{
+            reader.close();
+            } catch (Exception exp) {}
+        }
+        return words;
+    }
 
 }
 
@@ -60,6 +106,12 @@ class Event implements Saveable{
         return output;            
     }
 
+    public String toFile(){
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy; HH:mm:ss");
+        String output = String.format("%s/%s", df.format(EventTime), Name);
+        return output;            
+    }
+
     public void setName(String n){
         this.Name = n;
     }
@@ -74,7 +126,7 @@ class Event implements Saveable{
 
     public void save(){
         try (FileWriter writer = new FileWriter(PATH, true)) {
-            writer.append(String.format("%s\n", this.toString()));
+            writer.append(String.format("%s\n", this.toFile()));
             writer.flush();
             writer.close();
         } catch (IOException ex) {
